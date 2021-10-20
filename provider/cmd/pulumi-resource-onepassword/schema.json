@@ -1,0 +1,721 @@
+{
+    "name": "onepassword",
+    "description": "A Pulumi package for creating and managing onepassword cloud resources.",
+    "keywords": [
+        "pulumi",
+        "onepassword"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`onepassword` Terraform Provider](https://github.com/terraform-providers/terraform-provider-onepassword).",
+    "repository": "https://github.com/pulumi/pulumi-onepassword",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "token": {
+                "type": "string",
+                "description": "A valid token for your 1Password Connect API. Can also be sourced from OP_CONNECT_TOKEN.\n"
+            },
+            "url": {
+                "type": "string",
+                "description": "The HTTP(S) URL where your 1Password Connect API can be found. Must be provided through the the OP_CONNECT_HOST\nenvironment variable if this attribute is not set.\n"
+            }
+        },
+        "defaults": [
+            "token"
+        ]
+    },
+    "types": {
+        "onepassword:index/ItemPasswordRecipe:ItemPasswordRecipe": {
+            "properties": {
+                "digits": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "length": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "letters": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "symbols": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "onepassword:index/ItemSection:ItemSection": {
+            "properties": {
+                "fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/onepassword:index/ItemSectionField:ItemSectionField"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "label"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "id",
+                        "label"
+                    ]
+                }
+            }
+        },
+        "onepassword:index/ItemSectionField:ItemSectionField": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "passwordRecipe": {
+                    "$ref": "#/types/onepassword:index/ItemSectionFieldPasswordRecipe:ItemSectionFieldPasswordRecipe",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "purpose": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "value": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "label"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "id",
+                        "label",
+                        "value"
+                    ]
+                }
+            }
+        },
+        "onepassword:index/ItemSectionFieldPasswordRecipe:ItemSectionFieldPasswordRecipe": {
+            "properties": {
+                "digits": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "length": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "letters": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "symbols": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "onepassword:index/getItemSection:getItemSection": {
+            "properties": {
+                "fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/onepassword:index/getItemSectionField:getItemSectionField"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "fields",
+                "id",
+                "label"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "onepassword:index/getItemSectionField:getItemSectionField": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "purpose": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "value": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "label",
+                "purpose",
+                "type",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the onepassword package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "token": {
+                "type": "string",
+                "description": "A valid token for your 1Password Connect API. Can also be sourced from OP_CONNECT_TOKEN.\n"
+            },
+            "url": {
+                "type": "string",
+                "description": "The HTTP(S) URL where your 1Password Connect API can be found. Must be provided through the the OP_CONNECT_HOST\nenvironment variable if this attribute is not set.\n"
+            }
+        },
+        "required": [
+            "token"
+        ],
+        "inputProperties": {
+            "token": {
+                "type": "string",
+                "description": "A valid token for your 1Password Connect API. Can also be sourced from OP_CONNECT_TOKEN.\n"
+            },
+            "url": {
+                "type": "string",
+                "description": "The HTTP(S) URL where your 1Password Connect API can be found. Must be provided through the the OP_CONNECT_HOST\nenvironment variable if this attribute is not set.\n"
+            }
+        },
+        "requiredInputs": [
+            "token"
+        ]
+    },
+    "resources": {
+        "onepassword:index/item:Item": {
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "description": "The category of the item. One of [\"login\" \"password\" \"database\"]\n"
+                },
+                "database": {
+                    "type": "string",
+                    "description": "(Only applies to the database category) The name of the database.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "(Only applies to the database category) The address where the database can be found\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The Terraform resource identifier for this item in the format `vaults/\u003cvault_id\u003e/items/\u003citem_id\u003e`.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password for this item.\n"
+                },
+                "passwordRecipe": {
+                    "$ref": "#/types/onepassword:index/ItemPasswordRecipe:ItemPasswordRecipe",
+                    "description": "Password for this item.\n"
+                },
+                "port": {
+                    "type": "string",
+                    "description": "(Only applies to the database category) The port the database is listening on.\n"
+                },
+                "sections": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/onepassword:index/ItemSection:ItemSection"
+                    },
+                    "description": "A list of custom sections in an item\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of strings of the tags assigned to the item.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the item.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\"\n\"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The primary URL for the item.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username for this item.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The UUID of the item. Item identifiers are unique within a specific vault.\n"
+                },
+                "vault": {
+                    "type": "string",
+                    "description": "The UUID of the vault the item is in.\n"
+                }
+            },
+            "required": [
+                "id",
+                "password",
+                "uuid",
+                "vault"
+            ],
+            "inputProperties": {
+                "category": {
+                    "type": "string",
+                    "description": "The category of the item. One of [\"login\" \"password\" \"database\"]\n"
+                },
+                "database": {
+                    "type": "string",
+                    "description": "(Only applies to the database category) The name of the database.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "(Only applies to the database category) The address where the database can be found\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password for this item.\n"
+                },
+                "passwordRecipe": {
+                    "$ref": "#/types/onepassword:index/ItemPasswordRecipe:ItemPasswordRecipe",
+                    "description": "Password for this item.\n"
+                },
+                "port": {
+                    "type": "string",
+                    "description": "(Only applies to the database category) The port the database is listening on.\n"
+                },
+                "sections": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/onepassword:index/ItemSection:ItemSection"
+                    },
+                    "description": "A list of custom sections in an item\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of strings of the tags assigned to the item.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the item.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\"\n\"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The primary URL for the item.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username for this item.\n"
+                },
+                "vault": {
+                    "type": "string",
+                    "description": "The UUID of the vault the item is in.\n"
+                }
+            },
+            "requiredInputs": [
+                "vault"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Item resources.\n",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "The category of the item. One of [\"login\" \"password\" \"database\"]\n"
+                    },
+                    "database": {
+                        "type": "string",
+                        "description": "(Only applies to the database category) The name of the database.\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "(Only applies to the database category) The address where the database can be found\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The Terraform resource identifier for this item in the format `vaults/\u003cvault_id\u003e/items/\u003citem_id\u003e`.\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password for this item.\n"
+                    },
+                    "passwordRecipe": {
+                        "$ref": "#/types/onepassword:index/ItemPasswordRecipe:ItemPasswordRecipe",
+                        "description": "Password for this item.\n"
+                    },
+                    "port": {
+                        "type": "string",
+                        "description": "(Only applies to the database category) The port the database is listening on.\n"
+                    },
+                    "sections": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/onepassword:index/ItemSection:ItemSection"
+                        },
+                        "description": "A list of custom sections in an item\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "An array of strings of the tags assigned to the item.\n"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "The title of the item.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\"\n\"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "The primary URL for the item.\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Username for this item.\n"
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "description": "The UUID of the item. Item identifiers are unique within a specific vault.\n"
+                    },
+                    "vault": {
+                        "type": "string",
+                        "description": "The UUID of the vault the item is in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "onepassword:index/getItem:getItem": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getItem.\n",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "type": "string"
+                    },
+                    "vault": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "vault"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getItem.\n",
+                "properties": {
+                    "category": {
+                        "type": "string"
+                    },
+                    "database": {
+                        "type": "string"
+                    },
+                    "hostname": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "port": {
+                        "type": "string"
+                    },
+                    "sections": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/onepassword:index/getItemSection:getItemSection"
+                        }
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "type": "string"
+                    },
+                    "vault": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "category",
+                    "database",
+                    "hostname",
+                    "id",
+                    "password",
+                    "port",
+                    "sections",
+                    "tags",
+                    "title",
+                    "type",
+                    "url",
+                    "username",
+                    "uuid",
+                    "vault"
+                ]
+            }
+        },
+        "onepassword:index/getVault:getVault": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getVault.\n",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVault.\n",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "id",
+                    "name",
+                    "uuid"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*",
+                "System.Collections.Immutable": "1.6.0"
+            }
+        },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-onepassword/sdk/v4/go/onepassword"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing onepassword cloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-onepassword)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-onepassword` repo](https://github.com/pulumi/pulumi-onepassword/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-onepassword` repo](https://github.com/terraform-providers/terraform-provider-onepassword/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-onepassword)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-onepassword` repo](https://github.com/pulumi/pulumi-onepassword/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-onepassword` repo](https://github.com/terraform-providers/terraform-provider-onepassword/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    }
+}
