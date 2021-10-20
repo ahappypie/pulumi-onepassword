@@ -1,7 +1,7 @@
 PACK             := onepassword
 ORG              := ahappypie
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
-NODE_MODULE_NAME := @${ORG}/${PACK}
+NODE_MODULE_NAME := @${ORG}/pulumi-${PACK}
 TF_NAME          := ${PACK}
 PROVIDER_PATH    := provider/v1
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
