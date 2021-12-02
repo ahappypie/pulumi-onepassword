@@ -73,7 +73,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:    []string{"pulumi", "onepassword"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-onepassword",
+		Repository:  "https://github.com/ahappypie/pulumi-onepassword",
 		Config:      map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -108,6 +108,7 @@ func Provider() tfbridge.ProviderInfo {
 			"onepassword_item":  {Tok: makeDataSource(mainMod, "getItem")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
+			PackageName: "@ahappypie/pulumi-onepassword",
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
@@ -129,7 +130,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/ahappypie/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
